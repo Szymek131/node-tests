@@ -16,5 +16,18 @@ describe('formatFullName', () => {
 
   it('Should return error if "fullName" arg is empty', () => {
     expect(formatFullName('')).to.equal('Error');
+  });
+
+  it('Should return error if "fullName" contains only firstName or lastName', () => {
+    expect(formatFullName('John')).to.equal('Error');
+    expect(formatFullName('Doe')).to.equal('Error');
   })
+
+  it('should return correct string if "fullName" are ok', () => {
+    expect(formatFullName('John Doe')).to.equal('John Doe');
+    expect(formatFullName('JOHN DOE')).to.equal('John Doe');
+    expect(formatFullName('john doe')).to.equal('John Doe');
+    expect(formatFullName('jOhN dOe')).to.equal('John Doe');
+    expect(formatFullName('JoHn DoE')).to.equal('John Doe');
+  });
 });
